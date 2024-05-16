@@ -1,0 +1,50 @@
+﻿<Window x:Class="PraktikaActivity.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PraktikaActivity"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="450" Width="800"
+        MinHeight="450" MinWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100px"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <ComboBox Margin="70 10 0 10" Name="DirectionComboBox" DisplayMemberPath="DirectionName" Width="130" HorizontalAlignment="Left" SelectionChanged="DirectionComboBox_SelectionChanged"/>
+            <DatePicker Margin="70 10 0 10" Width="130" HorizontalAlignment="Left" SelectedDateChanged="DatePicker_SelectedDateChanged" Name="DateChanger"/>
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="EventsListView">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="240">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="150" Width="150" Source="{Binding Path=ImgPath}" />
+                        <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="0 5 0 0" TextAlignment="Center" FontSize="14" Text="{Binding Path=EventName}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" TextWrapping="Wrap" Margin="0 5 0 0" TextAlignment="Center" FontSize="14" Text="{Binding Path=DirectionName}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Margin="0 5 0 0" TextAlignment="Center" FontSize="14" Text="{Binding Path=GetDate}" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Background="#FF8100" Margin="120 0 0 40" Content="Авторизация" Grid.Column="3" Grid.Row="0" Height="40" Width="120" Click="Button_Click"/>
+    </Grid>
+</Window>
